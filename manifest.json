@@ -1,0 +1,10 @@
+{
+    "dependencies": {
+        "github.com/PuerkitoBio/goquery": {
+            "branch": "master"
+        },
+        "github.com/ashwanthkumar/slack-go-webhook": {
+            "branch": "master"
+        }
+    }
+}

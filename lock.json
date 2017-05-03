@@ -1,0 +1,55 @@
+{
+    "memo": "",
+    "projects": [
+        {
+            "name": "github.com/PuerkitoBio/goquery",
+            "branch": "master",
+            "revision": "ed7d758e9a34ba1f55e8084e0d731448b46921a8",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/andybalholm/cascadia",
+            "branch": "master",
+            "revision": "349dd0209470eabd9514242c688c403c0926d266",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/ashwanthkumar/slack-go-webhook",
+            "branch": "master",
+            "revision": "fe52e9bf2b376c1d74222c8deabda62fe3f29ed3",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/parnurzeal/gorequest",
+            "branch": "master",
+            "revision": "8fe8e16b3c50b6cc37399ee385b15f62a20bf584",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "golang.org/x/net",
+            "branch": "master",
+            "revision": "da118f7b8e5954f39d0d2130ab35d4bf0e3cb344",
+            "packages": [
+                "html",
+                "publicsuffix"
+            ]
+        },
+        {
+            "name": "golang.org/x/text",
+            "branch": "master",
+            "revision": "f4b4367115ec2de254587813edaa901bc1c723a8",
+            "packages": [
+                "secure/bidirule",
+                "unicode/norm"
+            ]
+        }
+    ]
+}
