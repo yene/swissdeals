@@ -1,0 +1,12 @@
+[Unit]
+Description=Run swissdeals
+
+[Timer]
+OnCalendar=*-*-* 09:00:00
+
+[Install]
+WantedBy=timers.target
+
+# Both files need to have the same name.
+# Start the timer with: systemctl start swissdeals.timer
+# Debug timers with  systemctl list-timers

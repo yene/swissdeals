@@ -1,0 +1,12 @@
+[Unit]
+Description=Swissdeals
+After=network.target 
+
+[Service]
+Type=oneshot
+ExecStart=/home/<USER>/go/bin/swissdeals -slack https://hooks.slack.com/services/...
+# Define User or Group here, if you want
+
+[Install]
+WantedBy=multi-user.target
+Alias=swissdeals.service
