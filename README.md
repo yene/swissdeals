@@ -1,5 +1,5 @@
 # swissdeals
-Every day at 9 in switzerland, you can buy shit you don't need.
+It checks these shops for great deals and posts them to the slacks webhook.
 * daydeal.ch
 * digitec.ch
 * galaxus.ch
