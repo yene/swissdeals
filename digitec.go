@@ -17,8 +17,8 @@ func DigitecScrape(o chan<- offer) {
 
 	doc.Find(".daily-offer").Each(func(i int, s *goquery.Selection) {
 		price := s.Find(".product-content .product-price").Text()
-		price = strings.Replace(price, ".–3", ".-", -1)
 		price = strings.Replace(price, ".–", ".– ", -1)
+		price = cutoffafterprice(price)
 		price = removeNewline(price)
 		title := s.Find(".product-content .product-name").Text()
 		title = removeNewline(title)

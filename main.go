@@ -76,6 +76,15 @@ func removeShitFromURL(url string) string {
 	return url[0:que]
 }
 
+func cutoffafterprice(p string) string {
+	pos := strings.LastIndex(p, ".–")
+	if pos == -1 {
+		return p
+	}
+	pos += len(".–") // The dash has length of 3
+	return p[:pos]
+}
+
 func extractSrc(s string) string {
 	start := strings.Index(s, "src=\"")
 	if start == -1 {
