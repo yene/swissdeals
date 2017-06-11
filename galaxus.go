@@ -2,9 +2,8 @@ package main
 
 import (
 	"log"
-	"time"
-
 	"strings"
+	"time"
 
 	"github.com/PuerkitoBio/goquery"
 )
@@ -23,6 +22,12 @@ func GalaxusScrape(o chan<- offer) {
 		price = removeNewline(price)
 		title := s.Find(".product-content .product-name").Text()
 		title = removeNewline(title)
+
+		stock := s.Find(".daily-offer__stock .top").Text()
+		if strings.TrimSpace(stock) == "0" {
+			return
+		}
+
 		day := s.Find(".daily-offer__date .top").Text()
 		day = removeNewline(day)
 		link, _ := s.Find("a.overlay").Attr("href")
