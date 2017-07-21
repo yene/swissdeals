@@ -1,3 +1,6 @@
+# this file goes into /etc/systemd/system/
+# it does not have to be enabled, it will be run from the timer
+
 [Unit]
 Description=Swissdeals
 After=network.target 
