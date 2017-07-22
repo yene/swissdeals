@@ -1,6 +1,7 @@
 # this file goes into /etc/systemd/system/
 # Both files need to have the same name.
 # Start the timer with: systemctl enable swissdeals.timer && systemctl start swissdeals.timer
+# swissdeal.service does not have to be enabled or started.
 # Debug timers with  systemctl list-timers
 
 [Unit]

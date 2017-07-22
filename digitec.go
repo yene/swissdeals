@@ -3,50 +3,59 @@ package main
 import (
 	"log"
 	"strings"
-	"time"
 
 	"github.com/PuerkitoBio/goquery"
 )
 
-func DigitecScrape(o chan<- offer) {
-	doc, err := goquery.NewDocument("https://www.digitec.ch/LiveShopping")
+// Scrape digitec or galaxus
+func DigitecGalaxusScrape(o chan<- offer, site string) {
+	doc, err := goquery.NewDocument("https://www." + site + ".ch/LiveShopping")
 	if err != nil {
 		log.Fatal(err)
 		return
 	}
 
-	doc.Find(".daily-offer").Each(func(i int, s *goquery.Selection) {
-		price := s.Find(".product-content .product-price").Text()
-		price = strings.Replace(price, ".–", ".– ", -1)
-		price = cutoffafterprice(price)
-		price = removeNewline(price)
-		title := s.Find(".product-content .product-name").Text()
-		title = removeNewline(title)
-
-		stock := s.Find(".daily-offer__stock .top").Text()
-		if strings.TrimSpace(stock) == "0" {
+	doc.Find("article.daily-offer-new").Each(func(i int, s *goquery.Selection) {
+		// TODO: only post one deal for debugging
+		if i > 0 {
 			return
 		}
 
-		day := s.Find(".daily-offer__date .top").Text()
-		day = removeNewline(day)
-		link, _ := s.Find("a.overlay").Attr("href")
-		link = "https://www.digitec.ch" + link
-
-		img := s.Find(".daily-offer__image noscript").Text()
-		img = "https:" + extractSrc(img)
-		img = removeShitFromURL(img) + "?fit=inside%7C258:318&output-format=progressive-jpeg"
-
-		t := time.Now()
-		if day == t.Format("02") {
-			o <- offer{
-				Name:  title,
-				Price: price,
-				Link:  link,
-				Image: img,
-				Site:  "digitec.ch",
-			}
+		count := s.Find(".product-count__text").Text()
+		if strings.Contains(count, "beendet") {
+			return
 		}
+
+		price := s.Find(".product-price").Text()
+		// TODO: get product price without sub nodes, instead of doing this string manipulation.
+		price = strings.Replace(price, ".–1", ".-", -1)
+		price = strings.Replace(price, ".–", ".– ", -1)
+		price = removeNewline(price)
+		if price == "" {
+			return
+		}
+
+		title := s.Find(".product-name").Text()
+		title = removeNewline(title)
+
+		link, _ := s.Find("a.overlay").Attr("href")
+		link = "https://www." + site + ".ch" + link
+
+		/*
+			TODO: currently the image is inside the javascript lazy load, it does not work without javascript.
+				img := s.Find(".daily-offer__image noscript").Text()
+				img = "https:" + extractSrc(img)
+				img = removeShitFromURL(img) + "?fit=inside%7C258:318&output-format=progressive-jpeg"
+		*/
+
+		o <- offer{
+			Name:  title,
+			Price: price,
+			Link:  link,
+			//Image: img,
+			Site: site + ".ch",
+		}
+
 	})
 
 }
