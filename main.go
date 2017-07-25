@@ -51,10 +51,12 @@ func postOffer(p offer) {
 	}
 
 	payload := slack.Payload{
-		Text:     text,
-		Username: p.Site,
-		Channel:  "#spam",
-		IconUrl:  "https://shiro.ch/mymoney.png",
+		Text:        text,
+		Username:    p.Site,
+		Channel:     "#spam",
+		IconUrl:     "https://shiro.ch/mymoney.png",
+		UnfurlLinks: true,
+		UnfurlMedia: true,
 	}
 	err := slack.Send(*slacksHook, "", payload)
 	if len(err) > 0 {
