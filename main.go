@@ -55,7 +55,7 @@ func postOffer(p offer) {
 		Username:    p.Site,
 		Channel:     "#spam",
 		IconUrl:     "https://shiro.ch/mymoney.png",
-		UnfurlLinks: true,
+		UnfurlLinks: (p.Image == ""), // only unfurl digitec links
 		UnfurlMedia: true,
 	}
 	err := slack.Send(*slacksHook, "", payload)
