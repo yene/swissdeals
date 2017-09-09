@@ -1,3 +1,5 @@
+## Project abandoned. It uses the websites HTML as API, which changes too often.
+
 # swissdeals
 It checks these shops for great deals and posts them to the slacks webhook.
 * daydeal.ch
